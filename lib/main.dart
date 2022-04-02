@@ -21,7 +21,7 @@ class _RandomWordsState extends State<RandomWords> {
     final wordPair = WordPair.random();
     return ListView.builder(
       padding: const EdgeInsets.all(16.0),
-      itemBuilder: /*1*/ (context, i) {
+      itemBuilder: (context, i) {
         if (i.isOdd) return const Divider(); /*2*/
 
         final index = i ~/ 2; /*3*/
