@@ -32,7 +32,7 @@ class _RandomWordsState extends State<RandomWords> {
             _suggestions.addAll(generateWordPairs().take(10)); /*4*/
           }
           final alreadySaved =
-              _saved.contains(_suggestions[index].asPascalCase);
+              _saved.contains(_suggestions[index]);
 
           return ListTile(
             title: Text(
@@ -49,9 +49,9 @@ class _RandomWordsState extends State<RandomWords> {
               // NEW lines from here...
               setState(() {
                 if (alreadySaved) {
-                  _saved.remove(_suggestions[index].asPascalCase);
+                  _saved.remove(_suggestions[index]);
                 } else {
-                  _saved.add(_suggestions[index].asPascalCase);
+                  _saved.add(_suggestions[index]);
                 }
               });
             }, // ... to here.
