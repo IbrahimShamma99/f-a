@@ -21,6 +21,13 @@ class _RandomWordsState extends State<RandomWords> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('GENI'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.list),
+            onPressed: _pushSaved,
+            tooltip: 'Saved Suggestions',
+          ),
+        ],
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(16.0),
@@ -31,14 +38,14 @@ class _RandomWordsState extends State<RandomWords> {
           if (index >= _suggestions.length) {
             _suggestions.addAll(generateWordPairs().take(10)); /*4*/
           }
-          final alreadySaved =
-              _saved.contains(_suggestions[index]);
+          final alreadySaved = _saved.contains(_suggestions[index]);
 
           return ListTile(
             title: Text(
               _suggestions[index].asPascalCase,
               style: _biggerFont,
             ),
+
             trailing: Icon(
               // NEW from here...
               alreadySaved ? Icons.favorite : Icons.favorite_border,
@@ -58,6 +65,39 @@ class _RandomWordsState extends State<RandomWords> {
           );
         },
       ),
+    );
+  }
+
+  void _pushSaved() {
+    Navigator.of(context).push(
+      // Add lines from here...
+      MaterialPageRoute<void>(
+        builder: (context) {
+          final tiles = _saved.map(
+            (pair) {
+              return ListTile(
+                title: Text(
+                  pair.asPascalCase,
+                  style: _biggerFont,
+                ),
+              );
+            },
+          );
+          final divided = tiles.isNotEmpty
+              ? ListTile.divideTiles(
+                  context: context,
+                  tiles: tiles,
+                ).toList()
+              : <Widget>[];
+
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Saved Suggestions'),
+            ),
+            body: ListView(children: divided),
+          );
+        },
+      ), // ...to here.
     );
   }
 }
