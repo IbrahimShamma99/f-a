@@ -20,13 +20,13 @@ class _RandomWordsState extends State<RandomWords> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('GENI'),
+        title: const Text('List of random words'),
         actions: [
           IconButton(
             icon: const Icon(Icons.list),
             onPressed: _pushSaved,
             tooltip: 'Saved Suggestions',
-          ),
+          )
         ],
       ),
       body: ListView.builder(
@@ -77,7 +77,7 @@ class _RandomWordsState extends State<RandomWords> {
             (pair) {
               return ListTile(
                 title: Text(
-                  pair.asPascalCase,
+                  pair.asPascalCase, //NOTE To convert the word pair into string
                   style: _biggerFont,
                 ),
               );
