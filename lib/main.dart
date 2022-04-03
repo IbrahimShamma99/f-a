@@ -107,6 +107,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'PerformIT', home: RandomWords());
+    return MaterialApp(
+        title: 'PerformIT',
+        theme: ThemeData(
+          // Add the 5 lines from here...
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.white,
+            foregroundColor: Colors.black,
+          ),
+        ), // ... to here.
+
+        home: RandomWords());
   }
 }
